@@ -7,6 +7,9 @@ def _left(i):
 def _right(i):
 	return 2 * i + 2
 
+def _compare(a,b):
+	return a > b
+
 def print_tree(A):
 	height = int(math.log(len(A), 2)) + 1
 	size = 1
@@ -24,11 +27,11 @@ def max_heapify(A,i,heapsize):
 	l = _left(i)
 	r = _right(i)
 
-	if l < heapsize and A[l] > A[i]:
+	if l < heapsize and _compare(A[l], A[i]):
 		largest = l
 	else:
 		largest = i
-	if r < heapsize and A[r] > A[largest]:
+	if r < heapsize and _compare(A[r], A[largest]):
 		largest = r
 	if largest != i:
 		tmp = A[i]
@@ -53,15 +56,25 @@ def heapsort(A):
 		size -= 1
 		max_heapify(A,0,size)
 
-A = [4,1,3,2,16,9,10,14,8,7]
-heapsort(A)
-print A
+def reverse(A):
+	size = len(A)
+	for i in range(0, size/2):
+		tmp = A[i]
+		A[i] = A[size - 1 - i]
+		A[size - 1 - i] = tmp
+
+if __name__ == '__main__':
+	A = [4,1,3,2,16,9,10,14,8,7]
+	heapsort(A)
+	print A
+	reverse(A)
+	print A
 
 
-B = [45,3,645,23,7,45,123,4342,787,5,90]
-heapsort(B)
-print B
+	B = [45,3,645,23,7,45,123,4342,787,5,90]
+	heapsort(B)
+	print B
 
-C = [32,3432,56437,78,5341,675,2434,897,4,675,234,65,23,564,213,546,234,546,23,56,2341,564,44,5,45,3,4,5,656,234,34,564]
-heapsort(C)
-print C
+	C = [32,3432,56437,78,5341,675,2434,897,4,675,234,65,23,564,213,546,234,546,23,56,2341,564,44,5,45,3,4,5,656,234,34,564]
+	heapsort(C)
+	print C
