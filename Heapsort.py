@@ -7,9 +7,23 @@ def _left(i):
 def _right(i):
 	return 2 * i + 2
 
+def print_tree(A):
+	height = int(math.log(len(A), 2)) + 1
+	size = 1
+	for x in range(0,height):
+		for i in range(0, size):
+			n = 2**x + i - 1
+			if n < len(A):
+				print A[n],
+				print '   ',
+		print ''
+		size *=2
+
+
 def max_heapify(A,i,heapsize):
 	l = _left(i)
 	r = _right(i)
+
 	if l < heapsize and A[l] > A[i]:
 		largest = l
 	else:
@@ -42,6 +56,7 @@ def heapsort(A):
 A = [4,1,3,2,16,9,10,14,8,7]
 heapsort(A)
 print A
+
 
 B = [45,3,645,23,7,45,123,4342,787,5,90]
 heapsort(B)
